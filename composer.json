@@ -1,0 +1,15 @@
+{
+  "name": "hexlet/code",
+  "type": "project",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Vladimir Kaimonov",
+      "email": "kaivladimirv@gmail.com"
+    }
+  ],
+  "description": "Console program 'Difference Calculator' that determines the difference between two data structures.",
+  "require": {
+    "php": ">=8.0.1"
+  }
+}
