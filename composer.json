@@ -9,7 +9,14 @@
     }
   ],
   "description": "Console program 'Difference Calculator' that determines the difference between two data structures.",
+  "autoload": {
+    "files": [
+      "src/DocReader.php",
+      "src/App.php"
+    ]
+  },
   "require": {
-    "php": ">=8.0.1"
+    "php": ">=8.0.1",
+    "docopt/docopt": "^1.0"
   }
 }
