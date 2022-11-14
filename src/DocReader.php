@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace DifferenceCalculator\DocReader;
+namespace Differ\DocReader;
 
 function readDoc(): string
 {

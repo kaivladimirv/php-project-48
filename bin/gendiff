@@ -3,6 +3,14 @@
 
 declare(strict_types=1);
 
+use function Differ\DocReader\readDoc;
+use function cli\line;
+
 require __DIR__ . '/../vendor/autoload.php';
 
-DifferenceCalculator\App\run();
+$doc = readDoc();
+$args = Docopt::handle($doc);
+
+$diff = Differ\Differ\genDiff($args['<firstFile>'], $args['<secondFile>']);
+
+line($diff);

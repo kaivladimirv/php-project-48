@@ -1,5 +1,8 @@
 {
   "name": "hexlet/code",
+  "bin": [
+    "bin/gendiff"
+  ],
   "type": "project",
   "license": "MIT",
   "authors": [
@@ -12,11 +15,14 @@
   "autoload": {
     "files": [
       "src/DocReader.php",
-      "src/App.php"
+      "src/ArraysDiffer.php",
+      "src/DiffNormalizer.php",
+      "src/Differ.php"
     ]
   },
   "require": {
     "php": ">=8.0.1",
-    "docopt/docopt": "^1.0"
+    "docopt/docopt": "^1.0",
+    "wp-cli/php-cli-tools": "^0.11.16"
   }
 }
