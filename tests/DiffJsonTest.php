@@ -38,7 +38,7 @@ class DiffJsonTest extends TestCase
   - proxy: 123.234.53.22
   - timeout: 50
   + timeout: 20
-  +  verbose: true
+  + verbose: true
 }';
 
         $this->assertEquals($expected, genDiff($this->pathToFile1, $this->pathToFile2));
