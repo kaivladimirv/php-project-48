@@ -13,7 +13,7 @@ function parseFile(string $pathToFile): array
 
     return match ($fileExtension) {
         'json' => parseJsonFile($pathToFile),
-        'yaml' => parseYamlFile($pathToFile),
+        'yaml', 'yml' => parseYamlFile($pathToFile),
         default => throw new UnexpectedValueException("Unsupported file type $fileExtension"),
     };
 }
