@@ -4,6 +4,16 @@ declare(strict_types=1);
 
 namespace Differ\Formatter;
 
+use UnexpectedValueException;
+
+function format(array $diff, string $format): string
+{
+    return match ($format) {
+        'stylish' => stylish($diff),
+        default => throw new UnexpectedValueException("Unknown format {$format}")
+    };
+}
+
 function stylish(array $diff): string
 {
     $result = array_reduce(
