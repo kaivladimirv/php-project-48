@@ -25,5 +25,12 @@ function parseJsonFile(string $pathToFile): array
 
 function parseYamlFile(string $pathToFile): array
 {
-    return (array) Yaml::parseFile($pathToFile, Yaml::PARSE_OBJECT_FOR_MAP);
+    $data = Yaml::parseFile($pathToFile, Yaml::PARSE_OBJECT_FOR_MAP);
+
+    return convertObjectToArray($data);
+}
+
+function convertObjectToArray(object $object): array
+{
+    return json_decode(json_encode($object), true);
 }
