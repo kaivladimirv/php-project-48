@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Differ\Differ;
 
 use function Differ\ArraysDiffer\getDiffOfArrays;
-use function Differ\DiffNormalizer\normalizeToStylish;
+use function Differ\DiffNormalizer\stylish;
 use function Differ\Parsers\parseFile;
 
 function genDiff(string $pathToFile1, string $pathToFile2): string
@@ -15,5 +15,5 @@ function genDiff(string $pathToFile1, string $pathToFile2): string
 
     $diff = getDiffOfArrays($fileData1, $fileData2);
 
-    return normalizeToStylish($diff);
+    return stylish($diff);
 }

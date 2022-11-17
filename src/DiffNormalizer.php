@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Differ\DiffNormalizer;
 
-function normalizeToStylish(array $diff): string
+function stylish(array $diff): string
 {
     $result = array_reduce(
         array_keys($diff),
