@@ -11,6 +11,6 @@ require __DIR__ . '/../vendor/autoload.php';
 $doc = readDoc();
 $args = Docopt::handle($doc);
 
-$diff = Differ\Differ\genDiff($args['<firstFile>'], $args['<secondFile>']);
+$diff = Differ\Differ\genDiff($args['<firstFile>'], $args['<secondFile>'], $args['--format']);
 
 line($diff);
