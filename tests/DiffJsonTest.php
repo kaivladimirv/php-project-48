@@ -32,14 +32,7 @@ class DiffJsonTest extends TestCase
 
     public function testFlatJson(): void
     {
-        $expected = '{
-  - follow: false
-    host: hexlet.io
-  - proxy: 123.234.53.22
-  - timeout: 50
-  + timeout: 20
-  + verbose: true
-}';
+        $expected = file_get_contents($this->getFixtureFullPath('expected1.txt'));
 
         $this->assertEquals($expected, genDiff($this->pathToFile1, $this->pathToFile2));
     }
