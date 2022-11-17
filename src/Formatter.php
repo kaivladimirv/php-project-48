@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Differ\DiffNormalizer;
+namespace Differ\Formatter;
 
 function stylish(array $diff): string
 {

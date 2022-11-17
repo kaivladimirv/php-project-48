@@ -17,7 +17,7 @@
       "src/DocReader.php",
       "src/Parsers.php",
       "src/ArraysDiffer.php",
-      "src/DiffNormalizer.php",
+      "src/Formatter.php",
       "src/Differ.php"
     ]
   },
