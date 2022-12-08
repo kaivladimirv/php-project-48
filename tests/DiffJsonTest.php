@@ -15,8 +15,8 @@ class DiffJsonTest extends TestCase
 
     protected function setUp(): void
     {
-        $this->pathToFile1 = $this->getFixtureFullPath('fileFlat1.json');
-        $this->pathToFile2 = $this->getFixtureFullPath('fileFlat2.json');
+        $this->pathToFile1 = $this->getFixtureFullPath('file1.json');
+        $this->pathToFile2 = $this->getFixtureFullPath('file2.json');
     }
 
     private function getFixtureFullPath($fixtureName): string
@@ -32,7 +32,7 @@ class DiffJsonTest extends TestCase
 
     public function testFlatJson(): void
     {
-        $expected = file_get_contents($this->getFixtureFullPath('expected1.txt'));
+        $expected = file_get_contents($this->getFixtureFullPath('expected.txt'));
 
         $this->assertEquals($expected, genDiff($this->pathToFile1, $this->pathToFile2));
     }

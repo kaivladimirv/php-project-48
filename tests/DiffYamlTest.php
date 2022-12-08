@@ -15,8 +15,8 @@ class DiffYamlTest extends TestCase
 
     protected function setUp(): void
     {
-        $this->pathToFile1 = $this->getFixtureFullPath('fileFlat1.yaml');
-        $this->pathToFile2 = $this->getFixtureFullPath('fileFlat2.yaml');
+        $this->pathToFile1 = $this->getFixtureFullPath('file1.yaml');
+        $this->pathToFile2 = $this->getFixtureFullPath('file2.yaml');
     }
 
     private function getFixtureFullPath($fixtureName): string
@@ -32,7 +32,7 @@ class DiffYamlTest extends TestCase
 
     public function testFlatYaml(): void
     {
-        $expected = file_get_contents($this->getFixtureFullPath('expected1.txt'));
+        $expected = file_get_contents($this->getFixtureFullPath('expected.txt'));
 
         $this->assertEquals($expected, genDiff($this->pathToFile1, $this->pathToFile2));
     }

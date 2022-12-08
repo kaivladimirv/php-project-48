@@ -4,36 +4,41 @@ declare(strict_types=1);
 
 namespace Differ\ArraysDiffer;
 
-function getDiffOfArrays(array $fileData1, array $fileData2): array
+function getDiff(array $array1, array $array2): array
 {
-    $result = [];
-
-    $keys1 = array_keys($fileData1);
-    $keys2 = array_keys($fileData2);
+    $keys1 = array_keys($array1);
+    $keys2 = array_keys($array2);
     $allKeys = array_unique(array_merge($keys1, $keys2));
     sort($allKeys);
 
-    foreach ($allKeys as $key) {
-        $value1 = $fileData1[$key] ?? null;
-        $value2 = $fileData2[$key] ?? null;
-        $isAdded = !array_key_exists($key, $fileData1);
-        $isDeleted = !array_key_exists($key, $fileData2);
+    return array_reduce(
+        $allKeys,
+        function (array $acc, mixed $key) use ($array1, $array2) {
+            return array_merge($acc, [$key => buildDiff($key, $array1, $array2)]);
+        },
+        []
+    );
+}
 
-        if ($isAdded) {
-            $diff = ['+' => $value2];
-        } elseif ($isDeleted) {
-            $diff = ['-' => $value1];
-        } elseif ($value1 === $value2) {
-            $diff = [' ' => $value1];
-        } else {
-            $diff = [
-                '-' => $value1,
-                '+' => $value2,
-            ];
-        }
+function buildDiff(mixed $key, array $array1, array $array2): array
+{
+    $isAdded = !array_key_exists($key, $array1);
+    $isDeleted = !array_key_exists($key, $array2);
+    $value1 = $array1[$key] ?? null;
+    $value2 = $array2[$key] ?? null;
 
-        $result[$key] = $diff;
+    if ($isAdded) {
+        return ['+' => is_array($value2) ? getDiff([], $value2) : $value2];
+    } elseif ($isDeleted) {
+        return ['-' => is_array($value1) ? getDiff($value1, []) : $value1];
+    } elseif ((is_array($value1) and is_array($value2))) {
+        return ['' => getDiff($value1, $value2)];
+    } elseif ($value1 !== $value2) {
+        return [
+            '-' => is_array($value1) ? getDiff($value1, []) : $value1,
+            '+' => is_array($value2) ? getDiff($value2, []) : $value2,
+        ];
+    } else {
+        return ['' => $value1];
     }
-
-    return $result;
 }
