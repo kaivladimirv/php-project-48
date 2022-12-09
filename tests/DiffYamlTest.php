@@ -30,7 +30,7 @@ class DiffYamlTest extends TestCase
         return implode('/', $parts);
     }
 
-    public function testFlatYaml(): void
+    public function testStylishDiff(): void
     {
         $expected = file_get_contents($this->getFixtureFullPath('expected.txt'));
 
