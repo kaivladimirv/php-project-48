@@ -32,7 +32,7 @@ class DiffYamlTest extends TestCase
 
     public function testStylishDiff(): void
     {
-        $expected = file_get_contents($this->getFixtureFullPath('expected.txt'));
+        $expected = file_get_contents($this->getFixtureFullPath('stylishExpected.txt'));
 
         $this->assertEquals($expected, genDiff($this->pathToFile1, $this->pathToFile2));
     }
