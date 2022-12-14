@@ -31,13 +31,11 @@ function stylish(array $diff): string
         );
     };
 
-    $result = [
+    return implode(PHP_EOL, [
         '{',
         ...$make($diff),
         '}',
-    ];
-
-    return implode(PHP_EOL, $result);
+    ]);
 }
 
 function buildItem(string $state, mixed $key, mixed $value, int $nestingLevel): string
