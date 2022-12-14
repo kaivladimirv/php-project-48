@@ -36,4 +36,11 @@ class DiffJsonTest extends TestCase
 
         $this->assertEquals($expected, genDiff($this->pathToFile1, $this->pathToFile2));
     }
+
+    public function testPlainDiff(): void
+    {
+        $expected = file_get_contents($this->getFixtureFullPath('plainExpected.txt'));
+
+        $this->assertEquals($expected, genDiff($this->pathToFile1, $this->pathToFile2, 'plain'));
+    }
 }
