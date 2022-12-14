@@ -43,4 +43,11 @@ class DiffYamlTest extends TestCase
 
         $this->assertEquals($expected, genDiff($this->pathToFile1, $this->pathToFile2, 'plain'));
     }
+
+    public function testJsonDiff(): void
+    {
+        $expected = file_get_contents($this->getFixtureFullPath('jsonExpected.txt'));
+
+        $this->assertJsonStringEqualsJsonString($expected, genDiff($this->pathToFile1, $this->pathToFile2, 'json'));
+    }
 }

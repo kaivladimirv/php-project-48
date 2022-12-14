@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Differ\Formatters\Stylish;
+namespace Differ\Formatters\Plain;
 
 function plain(array $diff): string
 {
