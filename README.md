@@ -20,10 +20,15 @@ Comparing two flat yaml files
     ```
 [![asciicast](https://asciinema.org/a/9peyUaZIVRNw3Hh8exXuozEGp.svg)](https://asciinema.org/a/9peyUaZIVRNw3Hh8exXuozEGp)
 
-
 Comparing two json files with recursive structure
 
     ```
     $ ./bin/gendiff file1.json file2.json
     ```
 [![asciicast](https://asciinema.org/a/obmdDQx5zsrLv7HEMzordzeSO.svg)](https://asciinema.org/a/obmdDQx5zsrLv7HEMzordzeSO)
+
+Comparing two json files with use plain formatter
+    ```
+    $ ./bin/gendiff --format plain file1.json file2.json
+    ```
+[![asciicast](https://asciinema.org/a/zukLK4J8TRrDDp3B9MXoHUH6U.svg)](https://asciinema.org/a/zukLK4J8TRrDDp3B9MXoHUH6U)
