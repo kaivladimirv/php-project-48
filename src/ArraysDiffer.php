@@ -28,17 +28,19 @@ function buildDiff(mixed $key, array $array1, array $array2): array
     $value2 = $array2[$key] ?? null;
 
     if ($isAdded) {
-        return ['+' => is_array($value2) ? getDiff([], $value2) : $value2];
+        $diff = ['+' => is_array($value2) ? getDiff([], $value2) : $value2];
     } elseif ($isDeleted) {
-        return ['-' => is_array($value1) ? getDiff($value1, []) : $value1];
+        $diff = ['-' => is_array($value1) ? getDiff($value1, []) : $value1];
     } elseif ((is_array($value1) and is_array($value2))) {
-        return ['' => getDiff($value1, $value2)];
+        $diff = ['' => getDiff($value1, $value2)];
     } elseif ($value1 !== $value2) {
-        return [
+        $diff = [
             '-' => is_array($value1) ? getDiff($value1, []) : $value1,
             '+' => is_array($value2) ? getDiff($value2, []) : $value2,
         ];
     } else {
-        return ['' => $value1];
+        $diff = ['' => $value1];
     }
+
+    return $diff;
 }
