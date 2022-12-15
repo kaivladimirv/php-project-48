@@ -46,9 +46,8 @@ function buildItem(string $state, mixed $key, mixed $value, int $nestingLevel): 
     }
 
     $valueAsString = convertValueToString($value, $nestingLevel);
-    $valueAsString = ($valueAsString === '' ? '' : ' ' . $valueAsString);
 
-    return "$indent$key:" . $valueAsString;
+    return "$indent$key: " . $valueAsString;
 }
 
 function convertValueToString(mixed $value, int $nestingLevel): string
