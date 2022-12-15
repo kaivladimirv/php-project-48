@@ -36,7 +36,7 @@ function buildDiff(mixed $key, array $array1, array $array2): array
     } elseif ($value1 !== $value2) {
         $diff = [
             '-' => is_array($value1) ? getDiff($value1, []) : $value1,
-            '+' => is_array($value2) ? getDiff($value2, []) : $value2,
+            '+' => is_array($value2) ? getDiff([], $value2) : $value2,
         ];
     } else {
         $diff = ['' => $value1];
