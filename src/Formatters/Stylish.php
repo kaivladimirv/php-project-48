@@ -14,9 +14,8 @@ function stylish(array $diff): string
                     array_keys($diff[$key]),
                     function (array $items, string $state) use ($make, $diff, $key, $nestingLevel, $parentState) {
                         $value = $diff[$key][$state];
-                        $isNestingDiff = is_array($value);
 
-                        if ($isNestingDiff) {
+                        if (is_array($value)) {
                             $value = [...$make($value, $nestingLevel + 1, $state)];
                         }
 
