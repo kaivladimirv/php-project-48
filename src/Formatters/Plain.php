@@ -11,9 +11,8 @@ function plain(array $diff): string
             array_keys($diff),
             function (array $acc, mixed $key) use ($make, $diff, $pathToKey) {
                 $pathToKey[] = $key;
-                $isChanged = (count($diff[$key]) === 2);
 
-                if ($isChanged) {
+                if (count($diff[$key]) === 2) {
                     return array_merge($acc, [buildLine($pathToKey, '', $diff[$key]['-'], $diff[$key]['+'])]);
                 }
 
@@ -21,10 +20,9 @@ function plain(array $diff): string
                     array_keys($diff[$key]),
                     function (array $lines, string $state) use ($make, $diff, $key, $pathToKey) {
                         $value = $diff[$key][$state];
-                        $isNestingDiff = is_array($value);
 
                         if (!$state) {
-                            return $isNestingDiff ? array_merge($lines, [...$make($value, $pathToKey)]) : $lines;
+                            return is_array($value) ? array_merge($lines, [...$make($value, $pathToKey)]) : $lines;
                         } else {
                             return array_merge($lines, [buildLine($pathToKey, $state, $value, $value)]);
                         }
