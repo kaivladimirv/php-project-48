@@ -10,8 +10,7 @@ function getDiff(array $array1, array $array2): array
 {
     $keys1 = array_keys($array1);
     $keys2 = array_keys($array2);
-    $allKeys = array_unique(array_merge($keys1, $keys2));
-    $allKeys = sort($allKeys, fn($key1, $key2) => $key1 <=> $key2);
+    $allKeys = sort(array_unique(array_merge($keys1, $keys2)), fn($key1, $key2) => $key1 <=> $key2);
 
     return array_reduce(
         $allKeys,
