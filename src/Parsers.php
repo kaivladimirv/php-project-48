@@ -37,5 +37,10 @@ function parseYamlFile(string $pathToFile): array
 
 function convertObjectToArray(object $object): array
 {
-    return json_decode(json_encode($object), true);
+    $data = json_encode($object);
+    if ($data === false) {
+        return [];
+    }
+
+    return json_decode($data, true);
 }
