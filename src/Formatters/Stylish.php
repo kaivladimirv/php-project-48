@@ -13,10 +13,10 @@ function stylish(array $diff): string
                 return array_reduce(
                     array_keys($diff[$key]),
                     function (array $items, string $state) use ($make, $diff, $key, $nestingLevel, $parentState) {
-                        $value = $diff[$key][$state];
-
-                        if (is_array($value)) {
-                            $value = [...$make($value, $nestingLevel + 1, $state)];
+                        if (is_array($diff[$key][$state])) {
+                            $value = [...$make($diff[$key][$state], $nestingLevel + 1, $state)];
+                        } else {
+                            $value = $diff[$key][$state];
                         }
 
                         return array_merge($items, [buildItem($parentState, $state, $key, $value, $nestingLevel)]);
