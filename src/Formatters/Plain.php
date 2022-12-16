@@ -10,21 +10,21 @@ function plain(array $diff): string
         return array_reduce(
             array_keys($diff),
             function (array $acc, mixed $key) use ($make, $diff, $pathToKey) {
-                $pathToKey = array_merge($pathToKey, [$key]);
+                $currPathToKey = array_merge($pathToKey, [$key]);
 
                 if (count($diff[$key]) === 2) {
-                    return array_merge($acc, [buildLine($pathToKey, '', $diff[$key]['-'], $diff[$key]['+'])]);
+                    return array_merge($acc, [buildLine($currPathToKey, '', $diff[$key]['-'], $diff[$key]['+'])]);
                 }
 
                 return array_reduce(
                     array_keys($diff[$key]),
-                    function (array $lines, string $state) use ($make, $diff, $key, $pathToKey) {
+                    function (array $lines, string $state) use ($make, $diff, $key, $currPathToKey) {
                         $value = $diff[$key][$state];
 
                         if ($state === '') {
-                            return is_array($value) ? array_merge($lines, [...$make($value, $pathToKey)]) : $lines;
+                            return is_array($value) ? array_merge($lines, [...$make($value, $currPathToKey)]) : $lines;
                         } else {
-                            return array_merge($lines, [buildLine($pathToKey, $state, $value, $value)]);
+                            return array_merge($lines, [buildLine($currPathToKey, $state, $value, $value)]);
                         }
                     },
                     $acc
