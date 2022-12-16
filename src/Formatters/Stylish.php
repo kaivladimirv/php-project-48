@@ -41,7 +41,7 @@ function buildItem(string $state, mixed $key, mixed $value, int $nestingLevel): 
 {
     $indent = buildIndent($nestingLevel);
 
-    if ($state) {
+    if ($state !== '') {
         $indent = substr_replace($indent, $state, -2, 1);
     }
 
