@@ -20,7 +20,12 @@ function parseFile(string $pathToFile): array
 
 function parseJsonFile(string $pathToFile): array
 {
-    return json_decode(file_get_contents($pathToFile), true);
+    $data = file_get_contents($pathToFile);
+    if ($data === false) {
+        return [];
+    }
+
+    return json_decode($data, true);
 }
 
 function parseYamlFile(string $pathToFile): array
