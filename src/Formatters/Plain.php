@@ -39,8 +39,8 @@ function plain(array $diff): string
 
 function buildLine(array $pathToKey, string $state, mixed $oldValue, mixed $newValue): string
 {
-    $oldValue = is_array($oldValue) ? '[complex value]' : (is_null($oldValue) ? 'null' : var_export($oldValue, true));
-    $newValue = is_array($newValue) ? '[complex value]' : (is_null($newValue) ? 'null' : var_export($newValue, true));
+    $oldValue = convertValueToString($oldValue);
+    $newValue = convertValueToString($newValue);
 
     $stateDescription = match ($state) {
         '+' => "added with value: $newValue",
@@ -50,4 +50,9 @@ function buildLine(array $pathToKey, string $state, mixed $oldValue, mixed $newV
     };
 
     return "Property '" . implode('.', $pathToKey) . "' was $stateDescription";
+}
+
+function convertValueToString(mixed $value): string
+{
+    return is_array($value) ? '[complex value]' : (is_null($value) ? 'null' : var_export($value, true));
 }
