@@ -10,7 +10,7 @@ function plain(array $diff): string
         return array_reduce(
             array_keys($diff),
             function (array $acc, mixed $key) use ($make, $diff, $pathToKey) {
-                $pathToKey[] = $key;
+                $pathToKey = array_merge($pathToKey, [$key]);
 
                 if (count($diff[$key]) === 2) {
                     return array_merge($acc, [buildLine($pathToKey, '', $diff[$key]['-'], $diff[$key]['+'])]);
@@ -39,13 +39,13 @@ function plain(array $diff): string
 
 function buildLine(array $pathToKey, string $state, mixed $oldValue, mixed $newValue): string
 {
-    $oldValue = convertValueToString($oldValue);
-    $newValue = convertValueToString($newValue);
+    $oldValueAsString = convertValueToString($oldValue);
+    $newValueAsString = convertValueToString($newValue);
 
     $stateDescription = match ($state) {
-        '+' => "added with value: $newValue",
+        '+' => "added with value: $newValueAsString",
         '-' => "removed",
-        '' => "updated. From $oldValue to $newValue",
+        '' => "updated. From $oldValueAsString to $newValueAsString",
         default => '',
     };
 
