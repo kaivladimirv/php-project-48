@@ -19,9 +19,7 @@ function stylish(array $diff): string
                             $value = [...$make($value, $nestingLevel + 1, $state)];
                         }
 
-                        $state = ($parentState === $state ? '' : $state);
-
-                        return array_merge($items, [buildItem($state, $key, $value, $nestingLevel)]);
+                        return array_merge($items, [buildItem($parentState, $state, $key, $value, $nestingLevel)]);
                     },
                     $acc
                 );
@@ -37,17 +35,22 @@ function stylish(array $diff): string
     ]);
 }
 
-function buildItem(string $state, mixed $key, mixed $value, int $nestingLevel): string
+function buildItem(string $parentState, string $state, mixed $key, mixed $value, int $nestingLevel): string
 {
-    $indent = buildIndent($nestingLevel);
-
-    if ($state !== '') {
-        $indent = substr_replace($indent, $state, -2, 1);
+    if ($parentState !== $state) {
+        $indent = mergeIndentWithState(buildIndent($nestingLevel), $state);
+    } else {
+        $indent = buildIndent($nestingLevel);
     }
 
     $valueAsString = convertValueToString($value, $nestingLevel);
 
     return "$indent$key: " . $valueAsString;
+}
+
+function mergeIndentWithState(string $indent, string $state): string
+{
+    return substr_replace($indent, $state, -2, 1);
 }
 
 function convertValueToString(mixed $value, int $nestingLevel): string
