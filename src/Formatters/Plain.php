@@ -21,7 +21,7 @@ function plain(array $diff): string
                     function (array $lines, string $state) use ($make, $diff, $key, $pathToKey) {
                         $value = $diff[$key][$state];
 
-                        if (!$state) {
+                        if ($state === '') {
                             return is_array($value) ? array_merge($lines, [...$make($value, $pathToKey)]) : $lines;
                         } else {
                             return array_merge($lines, [buildLine($pathToKey, $state, $value, $value)]);
