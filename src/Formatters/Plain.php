@@ -12,23 +12,16 @@ function plain(array $diff): string
             function (array $acc, mixed $key) use ($make, $diff, $pathToKey) {
                 $currPathToKey = array_merge($pathToKey, [$key]);
 
-                if (count($diff[$key]) === 2) {
+                $state = array_key_first($diff[$key]);
+                $value = current($diff[$key]);
+
+                if ($state === '') {
+                    return is_array($value) ? array_merge($acc, [...$make($value, $currPathToKey)]) : $acc;
+                } elseif (count($diff[$key]) === 2) {
                     return array_merge($acc, [buildLine($currPathToKey, '', $diff[$key]['-'], $diff[$key]['+'])]);
+                } else {
+                    return array_merge($acc, [buildLine($currPathToKey, $state, $value, $value)]);
                 }
-
-                return array_reduce(
-                    array_keys($diff[$key]),
-                    function (array $lines, string $state) use ($make, $diff, $key, $currPathToKey) {
-                        $value = $diff[$key][$state];
-
-                        if ($state === '') {
-                            return is_array($value) ? array_merge($lines, [...$make($value, $currPathToKey)]) : $lines;
-                        } else {
-                            return array_merge($lines, [buildLine($currPathToKey, $state, $value, $value)]);
-                        }
-                    },
-                    $acc
-                );
             },
             []
         );
