@@ -10,8 +10,7 @@ function stylish(array $diff): string
         return array_reduce(
             array_keys($diff),
             function (array $acc, mixed $key) use ($make, $diff, $nestingLevel, $parentState) {
-                $states = extractStatesFromDiff($diff[$key]);
-                $states = resetStateIfMatchesParent($states, $parentState);
+                $states = resetStateIfMatchesParent(extractStatesFromDiff($diff[$key]), $parentState);
                 $values = extractValuesFromDiff(
                     $diff[$key],
                     fn($state, $value) => $make($value, $nestingLevel + 1, $state)
