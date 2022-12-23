@@ -70,7 +70,7 @@ function buildItems(mixed $key, array $states, array $values, int $nestingLevel)
 
 function buildItem(string $state, mixed $key, mixed $value, int $nestingLevel): string
 {
-    if ($state) {
+    if ($state !== '') {
         $indent = mergeIndentWithState(buildIndent($nestingLevel), $state);
     } else {
         $indent = buildIndent($nestingLevel);
