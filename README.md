@@ -5,6 +5,11 @@
 <a href="https://github.com/kaivladimirv/php-project-48/blob/main/LICENSE"><img alt="GitHub" src="https://img.shields.io/github/license/kaivladimirv/php-project-48" alt="Read License"></a>
 <a href="https://php.net"><img src="https://img.shields.io/badge/php-8.0%2B-%238892BF" alt="PHP Programming Language"></a>
 
+## Difference Calculator
+Console program "Difference Calculator" that determines the difference between two data structures.
+
+It is a project of PHP courses from the [Hexlet](https://hexlet.io/) educational portal.
+
 ## Requirements
 * PHP 8.0+
 * Composer
