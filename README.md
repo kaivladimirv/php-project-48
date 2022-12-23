@@ -38,3 +38,7 @@ Comparing two files with use json formatter
 $ ./bin/gendiff --format json file1.json file2.json
 ```
 [![asciicast](https://asciinema.org/a/p8bR72cy8jRU2YgvQ2S5NeoP3.svg)](https://asciinema.org/a/p8bR72cy8jRU2YgvQ2S5NeoP3)
+
+## License
+The Bryan Games project is licensed for use under the MIT License (MIT).
+Please see [LICENSE](/LICENSE) for more information.
