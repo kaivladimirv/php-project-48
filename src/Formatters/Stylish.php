@@ -10,19 +10,14 @@ function stylish(array $diff): string
         return array_reduce(
             array_keys($diff),
             function (array $acc, mixed $key) use ($make, $diff, $nestingLevel, $parentState) {
-                return array_reduce(
-                    array_keys($diff[$key]),
-                    function (array $items, string $state) use ($make, $diff, $key, $nestingLevel, $parentState) {
-                        if (is_array($diff[$key][$state])) {
-                            $value = [...$make($diff[$key][$state], $nestingLevel + 1, $state)];
-                        } else {
-                            $value = $diff[$key][$state];
-                        }
-
-                        return array_merge($items, [buildItem($parentState, $state, $key, $value, $nestingLevel)]);
-                    },
-                    $acc
+                $states = extractStatesFromDiff($diff[$key]);
+                $states = resetStateIfMatchesParent($states, $parentState);
+                $values = extractValuesFromDiff(
+                    $diff[$key],
+                    fn($state, $value) => $make($value, $nestingLevel + 1, $state)
                 );
+
+                return array_merge($acc, buildItems($key, $states, $values, $nestingLevel));
             },
             []
         );
@@ -35,9 +30,47 @@ function stylish(array $diff): string
     ]);
 }
 
-function buildItem(string $parentState, string $state, mixed $key, mixed $value, int $nestingLevel): string
+function resetStateIfMatchesParent(array $states, string $parentState): array
 {
-    if ($parentState !== $state) {
+    return array_reduce(
+        $states,
+        fn(array $newStates, string $state) => array_merge($newStates, [$parentState === $state ? '' : $state]),
+        []
+    );
+}
+
+function extractStatesFromDiff(array $diff): array
+{
+    return array_keys($diff);
+}
+
+function extractValuesFromDiff(array $diff, callable $arrayExtractor): array
+{
+    return array_reduce(
+        array_keys($diff),
+        function (array $values, string $state) use ($arrayExtractor, $diff) {
+            $value = is_array($diff[$state]) ? $arrayExtractor($state, $diff[$state]) : $diff[$state];
+
+            return array_merge($values, [$value]);
+        },
+        []
+    );
+}
+
+function buildItems(mixed $key, array $states, array $values, int $nestingLevel): array
+{
+    return array_reduce(
+        array_keys($values),
+        function (array $items, mixed $index) use ($key, $states, $values, $nestingLevel) {
+            return array_merge($items, [buildItem($states[$index], $key, $values[$index], $nestingLevel)]);
+        },
+        []
+    );
+}
+
+function buildItem(string $state, mixed $key, mixed $value, int $nestingLevel): string
+{
+    if ($state) {
         $indent = mergeIndentWithState(buildIndent($nestingLevel), $state);
     } else {
         $indent = buildIndent($nestingLevel);
