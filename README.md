@@ -5,6 +5,10 @@
 <a href="https://github.com/kaivladimirv/php-project-48/blob/main/LICENSE"><img alt="GitHub" src="https://img.shields.io/github/license/kaivladimirv/php-project-48" alt="Read License"></a>
 <a href="https://php.net"><img src="https://img.shields.io/badge/php-8.0%2B-%238892BF" alt="PHP Programming Language"></a>
 
+## Requirements
+* PHP 8.0+
+* Composer
+
 ## Usage
 
 Comparing two flat json files
