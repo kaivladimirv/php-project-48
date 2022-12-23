@@ -2,6 +2,8 @@
 [![Maintainability](https://api.codeclimate.com/v1/badges/b3f25a564898554531c9/maintainability)](https://codeclimate.com/github/kaivladimirv/php-project-48/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/b3f25a564898554531c9/test_coverage)](https://codeclimate.com/github/kaivladimirv/php-project-48/test_coverage)
 [![PHP CI](https://github.com/kaivladimirv/php-project-48/actions/workflows/php-ci.yml/badge.svg)](https://github.com/kaivladimirv/php-project-48/actions/workflows/php-ci.yml)
+<a href="https://github.com/kaivladimirv/php-project-48/blob/main/LICENSE"><img alt="GitHub" src="https://img.shields.io/github/license/kaivladimirv/php-project-48" alt="Read License"></a>
+<a href="https://php.net"><img src="https://img.shields.io/badge/php-8.0%2B-%238892BF" alt="PHP Programming Language"></a>
 
 ## Usage
 
