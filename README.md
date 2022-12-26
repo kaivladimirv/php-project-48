@@ -10,6 +10,10 @@ Console program "Difference Calculator" that determines the difference between t
 
 It is a project of PHP courses from the [Hexlet](https://hexlet.io/) educational portal.
 
+## Features
+- Support for different input formats: yaml and json.
+- Report generation in the form of plain text, stylish and json.
+
 ## Requirements
 * PHP 8.0+
 * Composer
