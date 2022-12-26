@@ -29,6 +29,11 @@ $ make install
 [![asciicast](https://asciinema.org/a/g57bXSnZYdbgSH02zt7B7lLDL.svg)](https://asciinema.org/a/g57bXSnZYdbgSH02zt7B7lLDL)
 
 ## Usage
+> gendiff (-h | --help)   
+> gendiff (-v | --version)     
+> gendiff [--format] < firstFile > < secondFile >
+
+#
 
 Comparing two flat json files
 
