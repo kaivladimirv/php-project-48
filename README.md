@@ -18,6 +18,16 @@ It is a project of PHP courses from the [Hexlet](https://hexlet.io/) educational
 * PHP 8.0+
 * Composer
 
+## Installation
+```
+$ git clone https://github.com/kaivladimirv/php-project-48.git
+
+$ cd php-project-48
+
+$ make install
+```
+[![asciicast](https://asciinema.org/a/g57bXSnZYdbgSH02zt7B7lLDL.svg)](https://asciinema.org/a/g57bXSnZYdbgSH02zt7B7lLDL)
+
 ## Usage
 
 Comparing two flat json files
